@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 public class ArrayProblems{
     static double getAverage(int[] arr){
         double sum = 0;
@@ -97,10 +101,69 @@ public class ArrayProblems{
         }
         return -1;
     }
-        public static void main(String[] args){
-            int [] arr = {1,2,3,6,4,7,8};
+
+    static int[] swapAltElements(int arr[]){
+        int n = arr.length;
+
+        for(int i = 0; i < n-1; i=i+2){
+           int temp = arr[i];
+
+           arr[i] = arr[i+1];
+           arr[i+1] = temp;
+
+        }
+        return arr;
+    }
+
+    static List<Integer> intersectionElements(int [] arr1, int [] arr2 ){
+        HashSet<Integer> set = new HashSet<>();
+        List<Integer> result = new ArrayList<>();
+
+        for (int num : arr1) {
+            set.add(num);
+        }
+        for (int num : arr2) {
+
+            if(set.contains(num)){
+                result.add(num);
+                set.remove(num);
+            }
             
-            System.out.println(firstUnsortedElement(arr));
+        }
+        return result;
+        
+    }
+        public static void main(String[] args){
+            int [] arr1 = {1,2,3,6,4,7,8};
+            int [] arr2 = {5,0,4,6,12,7,9};
+
+            List<Integer> ans = intersectionElements(arr1,arr2);
+            System.out.println(ans);
+
+
+
+
+
+
+
+        //    int newArray[]= swapAltElements(arr);
+        //    System.out.println(Arrays.toString(newArray));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // System.out.println(firstUnsortedElement(arr));
 
 
 
