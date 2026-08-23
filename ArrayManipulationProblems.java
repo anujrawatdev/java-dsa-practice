@@ -1,7 +1,6 @@
 import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+
 
 public class ArrayManipulationProblems {
 
@@ -154,35 +153,150 @@ public class ArrayManipulationProblems {
         return xorSum;
     }
 
+    static int[] pairSumIsEqualToTarget(int arr[]) {
+        int n = arr.length;
+        int target = 9;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+
+                if (arr[i] + arr[j] == target) {
+                    int pair[] = { arr[i], arr[j] };
+                    return pair;
+                }
+
+            }
+        }
+        int ans[] = {};
+        return ans;
+    }
+
+    public static List<List<Integer>> threeSum(int arr[]) {
+
+        Set<List> output = new HashSet<>();
+
+        int n = arr.length;
+        int target = 0;
+        for (int i = 0; i < n-2; i++) {
+            for (int j = i + 1; j < n - 1; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    if (arr[i] + arr[j] + arr[k] == target) {
+
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(arr[i]);
+                        temp.add(arr[j]);
+                        temp.add(arr[k]);
+                        output.add(temp);
+                    }
+
+                }
+
+            }
+        }
+        return new ArrayList<>(output);
+    }
+
+    static int removeDuplicate(int arr[]){
+        int n = arr.length;
+        int i = 0;
+        int j = 1;
+        while(j < n){
+            if(arr[i]==arr[j]){
+                j++;
+            }
+            else{
+                i++;
+                arr[i]=arr[j];
+                j++;
+            }
+        }
+        return i+1;
+    }
+
+    public static int findFirstRepeatingElement(int arr[]){
+        Map<Integer,Integer> freq = new HashMap<>();
+        for (int num : arr) {
+            freq.put(num, freq.getOrDefault(num, 0)+1);
+        }
+        for (int i : arr) {
+            if(freq.get(i) > 1 ){
+               return i;
+            }
+        }
+        return -1;
+    }
+    public static int pivotIndex(int arr[]){
+     
+        int n = arr.length;
+
+        int leftSum [] = new int[n];
+        int rightSum [] = new int[n];
+
+        leftSum[0] = arr[0];
+        rightSum[n-1] = arr[n-1];
+
+        for (int i = 1; i < n; i++) {
+
+            leftSum[i] = leftSum[i-1]+arr[i];
+            
+        }
+
+        for (int i = n-2; i >= 0 ; i--) {
+
+            rightSum[i] = rightSum[i+1]+arr[i];
+            
+        }
+
+        for (int i = 0; i < n; i++) {
+            if(leftSum[i] == rightSum[i]){
+            return i;
+        }
+        }
+    return -1;
+    }
+
     public static void main(String args[]) {
 
-        int[] arr = { 1,2,2,3,3 };
+     int [] arr= {12,19,2,-20,6,14,-1};
+     System.out.println(pivotIndex(arr));
 
-        System.out.println(uniqueElement(arr));
+
+
+
+
+
+
+
+
+
+
+
+        // int[] arr={10,5,3,4,3,5,6};
+        // System.out.println(findFirstRepeatingElement(arr)); 
+
+
+
+
+
+
+        // int[] arr = { 1,2 , 2, 2, 2,3,3,4,5 };
+        // System.out.println(removeDuplicate(arr));
+
+
+
+        // System.out.println(threeSum(arr));
+
+
+
+
+
+        // int[] arr = { 1,2,2,3,3 };
+
+        // System.out.println(uniqueElement(arr));
 
         // System.out.println(missigElement(arr, 7));
 
-
-
-
-
-
-
-
         // int arr[] = { 1,0,1,0,0,1 };
-
         // System.out.println(Arrays.toString(sort0sAnd1s(arr)));
-
-
-
-
-
-
-
-
-
-
-
 
         // int [] arr = {1,1,2,3,3,3,4,4,4,4,4,5,5,5,5,5};
         // int [] ans = getHighestAndLowestFreq(arr);
