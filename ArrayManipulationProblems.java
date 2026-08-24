@@ -254,10 +254,49 @@ public class ArrayManipulationProblems {
     return -1;
     }
 
+    public static int missngElement(int arr[]){
+
+        Map <Integer,Integer> freq = new HashMap<>();
+
+        int n = arr.length;
+
+        for(int num:arr){
+
+            freq.put(num, freq.getOrDefault(num, 0)+1);
+
+        }
+
+        for (int i = 1; i <= n; i++) {
+           if(!freq.containsKey(i)){
+            return i;
+           }
+        }
+
+        return -1;
+    }
+
+
     public static void main(String args[]) {
 
-     int [] arr= {12,19,2,-20,6,14,-1};
-     System.out.println(pivotIndex(arr));
+
+        int [] arr = {1,4,4,5,2,6};
+        System.out.println(missngElement(arr));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //  int [] arr= {12,19,2,-20,6,14,-1};
+    //  System.out.println(pivotIndex(arr));
 
 
 
