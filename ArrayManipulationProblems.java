@@ -275,12 +275,33 @@ public class ArrayManipulationProblems {
         return -1;
     }
 
+    public static int maximumSubarray(int[] arr ){
+       int sum = 0;
+       int maxi= Integer.MIN_VALUE;
+
+       for (int i = 0; i < arr.length; i++) {
+           sum = sum + arr[i];
+
+           if(sum>maxi){
+            maxi = sum;
+           }
+
+           if(sum<0){
+            sum = 0;
+           }
+       }
+       return maxi;
+    }
 
     public static void main(String args[]) {
 
 
-        int [] arr = {1,4,4,5,2,6};
-        System.out.println(missngElement(arr));
+
+
+        int [] arr = {-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(maximumSubarray(arr));
+        // int [] arr = {1,4,4,5,2,6};
+        // System.out.println(missngElement(arr));
 
 
 
