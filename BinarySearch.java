@@ -76,12 +76,37 @@ public class BinarySearch{
         int ans = upperBound - lowerBound;
         return ans;
     }
+    public static int peakElementInArray(int arr[]){
+     
+        int n = arr.length;
+        int s = 0;
+        int e = n-1;
+        int ans = -1;
+
+        while (s<=e) {
+            int mid = s + (e-s)/2;
+            if( arr[mid]<arr[mid+1] ){
+                s = mid + 1;
+            }
+            else{
+                e = mid-1;
+                ans = mid;
+            }
+        }
+    return ans;
+    }
+
 public static void main(String[] args) {
 
-    int arr[] = {10,20,30,30,30,30,30,70,70,80};
-    int target = 30;
-    int ans = totalOccurence(arr, target);
-    System.out.println("ans "+ans);
+
+    int arr [] = {10,20,30,40,50,60,70,35,25};
+    System.out.println(peakElementInArray(arr));
+
+
+    // int arr[] = {10,20,30,30,30,30,30,70,70,80};
+    // int target = 30;
+    // int ans = totalOccurence(arr, target);
+    // System.out.println("ans "+ans);
 
 
 //     int arr[] = {10,20,30,30,30,30,70,80};
