@@ -96,11 +96,93 @@ public class BinarySearch{
     return ans;
     }
 
+    public static int pivotIndexInRotatedArray(int arr[]){
+        int n = arr.length;
+        int s = 0 ;
+        int e = n-1;
+        int ans =-1;
+
+        while (s<=e) {
+            int mid = s +(e-s)/2;
+            if(arr[mid] <= arr[n-1]){
+                e = mid-1;
+            }
+            else{
+                s = mid+1;
+                ans = mid;
+            }
+        }
+        return ans;
+    }
+
+    public static int binarySearch2(int arr[],int s , int e , int target){
+
+        int ans = -1;
+        while (s<=e) {
+            int mid = s +(e-s)/2;
+
+            if(arr[mid] == target){
+                ans = mid;
+               return mid;
+            }
+
+            else if(arr[mid] < target){
+                s = mid+1;
+            }
+            else{
+                e = mid-1;
+            }
+
+        }
+        return ans;
+    }
+    public static int searchInRotatedSortedArray(int arr[], int target){
+
+        int n = arr.length;
+        int pivotidx = pivotIndexInRotatedArray(arr);
+
+        //if array is sorted
+        if(pivotidx == -1){
+           int ans =binarySearch2(arr, 0, n-1 , target);
+           return ans;
+        }
+
+       //if array is not sorted or rotated
+       else{
+
+       int startArray1 = 0;
+       int endArray1 = pivotidx;
+       int startArray2 = pivotidx+1;
+       int endArray2 = n-1;
+
+       if(target>=arr[startArray1] && target<=arr[endArray1]){
+        int ans  = binarySearch2(arr, startArray1, endArray1, target);
+        return ans;
+       }
+       else{
+        int ans = binarySearch2(arr, startArray2, endArray2, target);
+        return ans;
+       }
+       }
+
+    }
+
 public static void main(String[] args) {
 
+    int arr[] = {50,60,70,80,10,20,30,40};
+    int target = 10;
+    System.out.println(searchInRotatedSortedArray(arr,target));
 
-    int arr [] = {10,20,30,40,50,60,70,35,25};
-    System.out.println(peakElementInArray(arr));
+
+
+
+
+    // int arr [] = {50,60,70,80,10,20,30,40};
+    // System.out.println(pivotIndexInRotatedArray(arr));
+
+
+    // int arr [] = {10,20,30,40,50,60,70,35,25};
+    // System.out.println(peakElementInArray(arr));
 
 
     // int arr[] = {10,20,30,30,30,30,30,70,70,80};
