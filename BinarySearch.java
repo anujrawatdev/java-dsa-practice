@@ -167,11 +167,62 @@ public class BinarySearch{
 
     }
 
+    public static double sqrRootWithBinarySearch(int n , int precisionNumber){
+        int s = 0 ;
+        int e = n;
+        double ans = -1;
+        double factor =1;
+        
+        if(n == 0){
+            return 0 ;
+        }
+        while (s <= e) {
+            int mid = s + (e-s)/2;
+
+            if(mid*mid == n){
+                return mid;
+            }
+
+            else if(mid*mid > n ){
+                e = mid-1;
+            }
+
+            else{
+                ans = mid;
+                s = mid +1 ;
+            }
+        }
+        for (int i = 0 ; i < precisionNumber; i ++){
+            
+            factor = factor / 10;
+            for( int j = 0 ; j < 10;j++){
+
+              double newAns = ans + factor;
+
+              if(newAns*newAns == n){
+                return newAns;
+              }
+              if(newAns*newAns < n){
+                 ans = Math.round(newAns*1000.0)/1000.0;
+              }
+              else{
+                //newAns*newAns > n
+                 break;
+              }
+            }
+        }
+        return ans;
+    }
 public static void main(String[] args) {
 
-    int arr[] = {50,60,70,80,10,20,30,40};
-    int target = 10;
-    System.out.println(searchInRotatedSortedArray(arr,target));
+      int n = 100;
+      int precisionNumber = 3;
+      System.out.println(sqrRootWithBinarySearch(n, precisionNumber));
+
+
+    // int arr[] = {50,60,70,80,10,20,30,40};
+    // int target = 10;
+    // System.out.println(searchInRotatedSortedArray(arr,target));
 
 
 
