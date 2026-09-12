@@ -213,17 +213,133 @@ public class BinarySearch{
         }
         return ans;
     }
-public static void main(String[] args) {
 
-      int n = 100;
-      int precisionNumber = 3;
-      System.out.println(sqrRootWithBinarySearch(n, precisionNumber));
+    public static boolean isValidAns(int arr[], int k, int mid){
+
+        
+
+        int pages =0;
+        int studentCount = 1;
+
+        for (int i = 0; i < arr.length; i++) {
+            if(pages + arr[i] <= mid){
+                pages = pages+ arr[i];
+            }
+            else{
+                studentCount++;
+                if(studentCount > k || arr[i] > mid){
+                    return false;
+                }
+                else{
+                    pages = 0;
+                    pages = pages+ arr[i];
+                }
+            }
+        }
+        return true;
+    }
+    public static int bookAllocation(int arr[],int k){
+
+        if (k > arr.length) {
+            return -1;
+        }
+
+        int s = 1;
+        int n = arr.length;
+        int sum = 0 ;
+        int ans = -1;
+    
+        for (int i = 0; i < n; i++) {
+            sum = sum + arr[i];
+        }
+        int e = sum;
+
+        while (s <= e) {
+            int mid = s + (e-s)/2;
+            if(isValidAns(arr,k,mid)){
+               e = mid-1;
+               ans = mid;
+            }
+            else{
+                s = mid + 1;
+            }
+        }
+    return ans;
+    }
+
+    public static boolean isValidSolution(int arr[],int k , int mid){
+
+        int painterCount = 1;
+        int paintedLength = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            if(paintedLength+arr[i] <= mid ){
+                paintedLength = paintedLength +arr[i];
+            }
+            else{
+
+                painterCount++;
+                
+
+                if(arr[i]>mid || painterCount>k){
+                    return false;
+                }
+                else{
+                    paintedLength = 0;
+                    paintedLength = paintedLength + arr[i];
+                }
+            }
+        }
+        return true;
+    }
+    public static int paintingBoard(int arr[], int k){
+        int n = arr.length;
+        int s =0;
+        int sum = 0;
+        int ans = -1;
+
+
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        int e = sum;
+
+        while (s<=e) {
+            int mid = s +(e-s)/2;
+            if(isValidSolution(arr,k,mid)){
+              ans = mid;
+              e = mid-1;
+            }
+            else{
+               s = mid+1;
+            }
+        }
+        return ans;
+    }
+public static void main(String[] args) {
+        
+    int arr[] = {10,20,30,40};
+    int k = 2;
+    System.out.println(paintingBoard(arr, k));
+
+
+
+
+    //  int arr[]={12,34,67,90};
+    //  int k =3;
+    //  System.out.println(bookAllocation(arr, k));
+
+
+    //   int n = 100;
+    //   int precisionNumber = 3;
+    //   System.out.println(sqrRootWithBinarySearch(n, precisionNumber));
+
+
 
 
     // int arr[] = {50,60,70,80,10,20,30,40};
     // int target = 10;
     // System.out.println(searchInRotatedSortedArray(arr,target));
-
 
 
 
