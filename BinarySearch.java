@@ -356,11 +356,65 @@ public class BinarySearch{
         return ans;
     }
 
+    public static boolean isValidSoln(int arr[],int m ,int mid){
+        int totalWoodCollected = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] >= mid){
+                int currentWoodCollected = arr[i]-mid;
+
+            totalWoodCollected += currentWoodCollected;
+            }
+            
+        }
+        if(totalWoodCollected >= m){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static int EKOSPOJ(int arr[],int m){
+        int n = arr.length;
+        int s = 0 ;
+        int maxi =-1;
+        int ans = -1;
+
+        for (int i = 0; i < n ; i++) {
+            if(maxi<arr[i]){
+                maxi =arr[i];
+            }
+        }
+
+        int e = maxi;
+
+        while (s<=e) {
+            int mid = s +(e-s)/2;
+
+            if(isValidSoln(arr,m,mid)){
+                ans = mid;
+                s = mid+1;
+            }
+            else{
+                e = mid-1;
+            }
+        }
+        return ans;
+    }
+
 public static void main(String[] args) {
 
-    int arr[]={1,2,4,8,9};
-    int k = 3;
-    System.out.println(agressiveCows(arr, k));
+
+
+    int arr[]={20,15,10,17};
+    int m = 7;
+    System.out.println(EKOSPOJ(arr, m));
+
+
+    // int arr[]={1,2,4,8,9};
+    // int k = 3;
+    // System.out.println(agressiveCows(arr, k));
+
+
         
     // int arr[] = {10,20,30,40};
     // int k = 2;
