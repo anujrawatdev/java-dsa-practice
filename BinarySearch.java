@@ -401,13 +401,69 @@ public class BinarySearch{
         return ans;
     }
 
+    public static boolean validAns(int arr[],int mid , int totalparatas , int cooks){
+       
+        int parataCount = 0;
+        
+        for (int i = 0; i < arr.length; i++) {
+
+            int currentCookRank = arr[i];
+            int timeTaken = 0;
+            int j = 1;
+            
+            while (timeTaken + j * currentCookRank <= mid) {
+                timeTaken = timeTaken + j*currentCookRank;
+                parataCount++;
+                j++;
+                
+                if(parataCount >= totalparatas){
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    public static int rotiParata(int p ,int arr[], int c){
+        // p -> number of paratas to cook 
+        // n -> number of cooks
+
+        int maxRank = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i]>maxRank){
+                maxRank = arr[i]; 
+            }
+        }
+
+        int s = 0 ;
+        int ans = -1;
+        int e = maxRank * (p * (p+1)/2);
+
+        while(s<=e){
+            int mid = s+(e-s)/2;
+
+            if(validAns(arr, mid , p , c)){
+               ans = mid;
+               e = mid -1;
+
+            }else{
+              s = mid+1;
+            }
+        }
+        return ans;
+    }
 public static void main(String[] args) {
 
+    int arr[] = {1,2,3,4};
+    int p = 10;
+    int c = 4;
+    System.out.println(rotiParata(p, arr, c));
 
 
-    int arr[]={20,15,10,17};
-    int m = 7;
-    System.out.println(EKOSPOJ(arr, m));
+    // int arr[]={20,15,10,17};
+    // int m = 7;
+    // System.out.println(EKOSPOJ(arr, m));
 
 
     // int arr[]={1,2,4,8,9};
