@@ -48,6 +48,7 @@ public class SortingAlgo{
             arr[prev+1] = currValue;
         }
     }
+ 
     public static void main(String args[]){
 
         int arr [] = {4,1,5,2,3};
