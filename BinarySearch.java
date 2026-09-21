@@ -537,14 +537,57 @@ public class BinarySearch{
         }
         return -1;
     }
+    public static boolean SearchIn2DString(int arr[][],int target){
+        
+        int totalRows = arr.length;
+        int totalCols = arr[0].length;
+        int n = totalRows*totalCols;
+
+        int s = 0;
+        int e = n-1;
+
+
+        while(s<=e){
+            int mid = s +(e-s)/2;
+            int row = mid/totalCols;
+            int col = mid%totalCols;
+
+            if(arr[row][col]==target){
+                return true;
+            }
+            else if(arr[row][col] < target){
+                 s = mid +1;
+            }
+            else{
+                e = mid-1;
+            }
+
+        }
+        return false;
+    }
+
 public static void main(String[] args) {
 
-    int arr[] = {1,1,2,2,3};
-    System.out.println(findSingleNonDuplicate(arr));
+
+    int arr[][] = {
+        {1,3,5,7},
+        {10,11,16,20},
+        {23,30,34,60}
+    };
+    System.out.println(SearchIn2DString(arr, 3));
+
+    // int arr[] = {1,1,2,2,3};
+    // System.out.println(findSingleNonDuplicate(arr));
+
+
+
 
     // int arr[] = {3,5,10,9,11};
     // int k =10;
     // System.out.println(findElementInNearlySortedArr(arr, k));
+
+
+
 
 
     // int arr[] = {1,2,3,4};
@@ -553,14 +596,21 @@ public static void main(String[] args) {
     // System.out.println(rotiParata(p, arr, c));
 
 
+
+
     // int arr[]={20,15,10,17};
     // int m = 7;
     // System.out.println(EKOSPOJ(arr, m));
 
 
+
+
+
     // int arr[]={1,2,4,8,9};
     // int k = 3;
     // System.out.println(agressiveCows(arr, k));
+
+
 
 
         
@@ -571,9 +621,13 @@ public static void main(String[] args) {
 
 
 
+
+
     //  int arr[]={12,34,67,90};
     //  int k =3;
     //  System.out.println(bookAllocation(arr, k));
+
+
 
 
     //   int n = 100;
