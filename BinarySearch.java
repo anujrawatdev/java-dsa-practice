@@ -566,15 +566,97 @@ public class BinarySearch{
         return false;
     }
 
+    public static boolean searchMatrix(int arr[][], int target ){
+        int totalRows = arr.length;
+        int totalCols = arr[0].length;
+        
+
+        int row = 0;
+        int col = totalCols-1;
+
+        while(row < totalRows && col >=0){
+            if(arr[row][col]==target){
+                return true;
+            }
+            else if(arr[row][col] > target){
+                col--;
+            }
+            else{
+                row++;
+            }
+        }
+        return false;
+    }
+
+
+    public static int OccOfOne(int arr[][], int row){
+
+        int totalRows = arr.length;
+        int totalCols = arr[0].length;
+
+        int s = 0;
+        int e = totalCols -1;
+        int ans = totalCols;
+        
+        while (s<=e) {
+            int mid = s +(e-s)/2;
+
+            if(arr[row][mid] == 0){
+               s = mid+1;
+            }
+            else{
+                ans = mid; 
+                e = mid-1;
+            }
+        }
+        return ans;
+    }
+
+    public static int maximum1InRow(int arr[][]){
+
+        int totalRows = arr.length;
+        int totalCols = arr[0].length;
+        int max =-1;
+        int maxRow=-1;
+
+        for (int row = 0; row < arr.length; row++) {
+            int oneCount = totalCols - OccOfOne(arr, row);
+            
+            if(oneCount>max){
+                max = oneCount;
+                maxRow = row;
+            }
+            
+        }
+       return maxRow;
+    }
+
 public static void main(String[] args) {
 
+   int arr[][] = {
+    {1, 1, 1, 1, 1},
+    {0, 1, 1, 1, 1},
+    {0, 0, 1, 1, 1},
+    {1, 1, 1, 1, 1}
+};
 
-    int arr[][] = {
-        {1,3,5,7},
-        {10,11,16,20},
-        {23,30,34,60}
-    };
-    System.out.println(SearchIn2DString(arr, 3));
+    System.out.println(maximum1InRow(arr));
+
+    // int arr[][] = {
+    //     {1,4,7,11,15},
+    //     {2,5,8,12,19},
+    //     {3,6,9,16,22},
+    //     {10,13,14,17,27},
+    //     {18,21,23,26,30}
+    // };
+    // System.out.println(searchMatrix(arr, 15));
+
+    // int arr[][] = {
+    //     {1,3,5,7},
+    //     {10,11,16,20},
+    //     {23,30,34,60}
+    // };
+    // System.out.println(SearchIn2DString(arr, 3));
 
     // int arr[] = {1,1,2,2,3};
     // System.out.println(findSingleNonDuplicate(arr));
