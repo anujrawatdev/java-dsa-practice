@@ -631,16 +631,72 @@ public class BinarySearch{
        return maxRow;
     }
 
+   static class InfiniteArray{
+
+        private int arr[];
+        InfiniteArray(){
+            arr = new int[10000];
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = i*2;
+            }
+
+        }
+        public int get (int index){
+            return arr[index];
+        }
+    }
+    public static int unBoundedSearch(InfiniteArray arr,int target){
+        if(arr.get(0) == target){
+            return 0;
+        }
+        int i =1;
+        while(arr.get(i)<=target){
+            i = i*2;
+        }
+        
+           int e = i ;
+           int s = i/2;
+
+            while (s<=e) {
+                int mid = s +(e-s)/2;
+
+
+                if(arr.get(mid)== target){
+                    return mid;
+                }
+                else if(arr.get(mid) < target){
+                    s = mid +1;
+                }
+                else{
+                    e = mid-1;
+                }
+            
+            }
+        return -1;
+    }
 public static void main(String[] args) {
 
-   int arr[][] = {
-    {1, 1, 1, 1, 1},
-    {0, 1, 1, 1, 1},
-    {0, 0, 1, 1, 1},
-    {1, 1, 1, 1, 1}
-};
+        InfiniteArray arr = new InfiniteArray();
 
-    System.out.println(maximum1InRow(arr));
+    System.out.println(unBoundedSearch(arr, 500));
+    System.out.println(unBoundedSearch(arr, 501));
+    System.out.println(unBoundedSearch(arr, 1400));
+
+
+
+
+//    int arr[][] = {
+//     {1, 1, 1, 1, 1},
+//     {0, 1, 1, 1, 1},
+//     {0, 0, 1, 1, 1},
+//     {1, 1, 1, 1, 1}
+// };
+
+    // System.out.println(maximum1InRow(arr));
+
+
+
+
 
     // int arr[][] = {
     //     {1,4,7,11,15},
