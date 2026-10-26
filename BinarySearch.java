@@ -706,12 +706,37 @@ public class BinarySearch{
         }
         return ans.toString();
     } 
+    public static char getMaxOccuringChar(String s){
+        int [] freq = new int[26];
+
+        //traverse on the String and update their frequency 
+        for (int i = 0; i < s.length(); i++) {
+            char currChar = s.charAt(i);
+            freq[currChar - 'a']++;
+        }
+
+        int max = -1;
+        char ans = ' ';
+        //traverse over the freq and get highest freq element
+        for (int i = 0; i < 26; i++) {
+
+            if(freq[i]>max){
+                max = freq[i];
+                ans = (char)('a'+i);
+            }
+        }
+        return ans;
+    }
 public static void main(String[] args) {
 
-           String s = "The sky is blue";
-           System.out.println(reverseString(s));
+              String s = "conceptual";
+              System.out.println(getMaxOccuringChar(s));
+
+        //    String s = "The sky is blue";
+        //    System.out.println(reverseString(s));
 
 
+        
     //     InfiniteArray arr = new InfiniteArray();
 
     // System.out.println(unBoundedSearch(arr, 500));
