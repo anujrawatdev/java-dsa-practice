@@ -3,21 +3,20 @@ import java.util.HashSet;
 
 public class ContainsDuplicate{
     public static void main(String[] args) {
-        int[] nums = {1,2,3,2};
-        int n = nums.length;
-        int ans = -1;
+        int [] arr = {1,2,3,3};
+        int n = arr.length;
+        int result = -1;
 
         HashSet<Integer> box = new HashSet<>();
 
-        for(int i = 0; i < n ; i++){
-            
-            if(box.contains(nums[i])){
-                ans = nums[i];
-                break;
+        for(int i =0; i < n; i ++){
+            box.add(arr[i]);
+            if(box.contains(arr[i])){
+                result = arr[i];
             }
-
-            box.add(nums[i]);
         }
-        System.out.print(ans);
+        System.out.println(result);
     }
 }
+
+
